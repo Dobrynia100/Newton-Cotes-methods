@@ -144,7 +144,7 @@ namespace nummeth
                
                 textBox7.Text = Convert.ToString(b);
             }
-            if (checkBox1.CheckState ==CheckState.Unchecked && checkBox1.CheckState == CheckState.Unchecked)
+            if (checkBox1.CheckState ==CheckState.Unchecked && checkBox2.CheckState == CheckState.Unchecked)
             {
                 MessageBox.Show("отметьте один или оба параметра", "чис.мет", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
