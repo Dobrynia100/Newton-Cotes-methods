@@ -351,16 +351,17 @@ namespace nummeth
             a =Convert.ToDouble(textBox6.Text);
             b = Convert.ToDouble(textBox7.Text);
             N = Convert.ToInt32(textBox10.Text);
-            if (a>b)
+            if (a > b)
             {
-                MessageBox.Show("a>b,введите корректное значение", "чис.мет", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("a>b,введите корректное значение", "numerical methods", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-            double sim = simpson(f, a, b, N);
-            double three = threeeight(f, a, b,N);
-            double five = fives(f, a, b,N);
-            Checkf(f);
-           
+            else
+            {
+                double sim = simpson(f, a, b, N);
+                double three = threeeight(f, a, b, N);
+                double five = fives(f, a, b, N);
+                Checkf(f);
+            }
            
         }
     }
