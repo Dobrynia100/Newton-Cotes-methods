@@ -46,28 +46,26 @@ namespace nummeth
         double simpson(Func<double, double> f, double a, double b, int n)
         {
             double result = 0;
+
             /*  var h = (b - a) / n;
-               var sum1 = 0d;
-               var sum2 = 0d;
-              double xk;
-              double xk_1;
-              for (var k = 1; k <= n; k++)
-              {
-                  xk = a + k * h;
-                  if (k <= n - 1)
-                  {
-                      sum1 += f(xk);
-                  }
-
-                  xk_1 = a + (k - 1) * h;
-                  sum2 += f((xk + xk_1) / 2);
-              }
-
-              result = h / 6d * (f(a) + 2*sum1 + 4 * sum2 +f(b));*/
+                           var sum1 = 0d;
+                           var sum2 = 0d;
+                          double xk;
+                          double xk_1;
+                          for (var k = 1; k <= n; k++)
+                          {
+                              xk = a + k * h;
+                              if (k <= n - 1)
+                              {
+                                  sum1 += f(xk);
+                              }
+                              xk_1 = a + (k - 1) * h;
+                              sum2 += f((xk + xk_1) / 2);
+                          }
+                          result = h / 6d * (f(a) + 2*sum1 + 4 * sum2 +f(b));*/
             /*  
               double h = (b - a) / n;
               double x = a + h;
-
               while (x < b)
               {
                   result += 4 * f(x);
@@ -76,40 +74,35 @@ namespace nummeth
                   x += h;
               }
               result = (h / 3) * (result + f(a) - f(b));*/
-
-             double h = (b - a) / n;
-              double k1 = 0, k2 = 0;
-              for (int i = 1; i < n; i ++)
-              {
-                  k1 += f(a + i * h);
-                  k2 += f(a + (i + 1) * h);
-              }
-              result=h/6d*(f(a) + 4d * k1 + 2d * k2+f(b));
-              
-
-            /*    double h = (b - a) / n;
+         /*   
+            double h = (b - a) / n;
+            double k1 = 0, k2 = 0;
+            for (int i = 1; i < n; i++)
+            {
+                k1 += f(a + i * h);
+                k2 += f(a + (i + 1) * h);
+            }
+            result = h/ 6d * (f(a) + 4d * k1 + 2d * k2 + f(b));
+            */
+            /*
+               double h = (b - a) / n;
                 for (int step = 0; step < n; step++)
                 {
                     double x1 = a + step * h;
                     double x2 = a + (step + 1) * h;
-
                     result += (x2 - x1) / 6.0 * (f(x1) + 4.0 * f(0.5 * (x1 + x2)) + f(x2));
                 }*/
-           /* double h = (b - a) / n;
-            double sum = 0;
-
-            double x0 = a;
-            double x1 = a + h;
-
-            for (int i = 0; i <= n - 1; i++)
-            {
-                sum += f(x0) + 4 * f(x0 + h / 2) + f(x1);
-
-                x0 += h;
-                x1 += h;
-            }
-
-            result=(h / 6) * sum;*/
+            double h = (b - a) / n;
+             double sum = 0;
+             double x0 = a;
+             double x1 = a + h;
+             for (int i = 0; i <= n - 1; i++)
+             {
+                 sum += f(x0) + 4 * f(x0 + h / 2) + f(x1);
+                 x0 += h;
+                 x1 += h;
+             }
+             result=(h / 6) * sum;
             textBox3.Text = Convert.ToString(result);
 
             return result;
@@ -144,7 +137,7 @@ namespace nummeth
                
                 textBox7.Text = Convert.ToString(b);
             }
-            if (checkBox1.CheckState ==CheckState.Unchecked && checkBox1.CheckState == CheckState.Unchecked)
+            if (checkBox1.CheckState ==CheckState.Unchecked && checkBox2.CheckState == CheckState.Unchecked)
             {
                 MessageBox.Show("отметьте один или оба параметра", "чис.мет", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -154,50 +147,35 @@ namespace nummeth
         {
             var h = (b - a) / n;
             double result;
-            /*  var sum1 = 0d;
-              var sum2 = 0d;
-              var sum3 = 0d;
-              for (var k = 1; k <= n; k++)
-              {
-                  var xk = a + k * h;
-                  if (k <= n - 1)
-                  {
-                      sum1 += f(xk);
-                  }
 
-                  var xk_1 = a + (k - 1) * h;
-                  sum2 += f((2*xk + xk_1) / 3);
-                  sum3 += f((xk + 2*xk_1) / 3);
-              }
-             result =(h/8d)*(f(a)+sum1 + 3 * (sum2+sum3)+f(b));*/
-            /*  var sum1 = 0d;
-                var sum2 = 0d;
-                var sum3 = 0d;
-                for (var k = 1; k <= n; k++)
-                {
-                    var xk = a + k * h;
-                    if (k <= n - 1)
-                    {
-                        sum1 += f(xk);
-                    }
-
-                    var xk_1 = a + (k - 1) * h;
-                    sum2 += f((2 * xk + xk_1) / 3);
-                    sum3 += f((xk + 2 * xk_1) / 3);
-                }
-                result = h* (1d/ 8d) * (f(a) + 2*sum1 + 3 * (sum2 + sum3) + f(b));*/
-           float value;
-            double interval_size = (b - a) / n;
-            double sum = f(a) + f(b);
-            for (int i = 1; i < n; i++)
+             
+          var sum1 = 0d;
+            var sum2 = 0d;
+            var sum3 = 0d;
+            for (var k = 1; k <= n; k++)
             {
-                if (i % 3 == 0)
-                    sum = sum + 2 * f(a + i * interval_size);
-                else
-                    sum = sum + 3 * f(a + i * interval_size);
+                var xk = a + k * h;
+                if (k <= n - 1)
+                {
+                    sum1 += f(xk);
+                }
+                var xk_1 = a + (k - 1) * h;
+                sum2 += f((2 * xk + xk_1) / 3);
+                sum3 += f((xk + 2 * xk_1) / 3);
             }
-            result=(3 * interval_size / 8) * sum;
-          
+            result = h * (1d / 8d) * (f(a) + 2 * sum1 + 3 * (sum2 + sum3) + f(b));
+             
+             /*
+              double sum = f(a) + f(b);
+              for (int i = 1; i < n; i++)
+              {
+                  if (i % 3 == 0)
+                      sum = sum + 2 * f(a + i * h);
+                  else
+                      sum = sum + 3 * f(a + i * h);
+              }
+              result=(3 * h / 8) * sum;
+            */
             textBox4.Text = Convert.ToString(result);
           
             return result;
@@ -239,9 +217,8 @@ namespace nummeth
                  sum3 += f((xk + xk_1) / 2); ;
                  sum4 += f((xk + 3 * xk_1) / 4);
              }
-            result = h * (7d * f(a) + 14d * sum1 + 32d * sum2 + 12d * sum3 + 32d * sum4 + 14d * f(b)) / 90d;
-
-             /*    n -= n % 5; if (n < 5) n = 5;
+            result = h * (7d * f(a) + 14d * sum1 + 32d * sum2 + 12d * sum3 + 32d * sum4 + 7d * f(b)) / 90d;
+           /*    n -= n % 5; if (n < 5) n = 5;
                   int i;
                   double s = 0.0, x = a, h = (b - a) / (n - 1);
                   for (i = 0; i < n; i += 5)
@@ -252,29 +229,29 @@ namespace nummeth
                       s += 32.0 * f(x); x += h;
                       s += 7.0 * f(x); x += h;
                   }
+                // s += 7.0 * f(a)+7.0*f(b);
                   s *= (2.0 * h) / (45.0);
                   result = s*1.25;*/
-             /*
-             double sum = 14d * f(a); 
-             double h = (b - a) / (n - 1); 
-             double mod;
-             int i = 1;
-             for(i=1; i < n - 1;i++)
-             {
-                 mod = i % 4;
-                 if (mod == 0)
-                     sum += 14d * f(a + i * h);
-                 else if (mod == 1)
-                     sum += 32d * f(a + i * h);
-                 else if (mod == 2)
-                     sum += 12d * f(a + i * h);
-                 else
-                     sum += 32d * f(a + i * h);
+          /*  
+            double sum = 14d * f(a); 
+            double h = (b - a) / (n - 1); 
+            double mod;
+            int i = 1;
+            for(i=1; i < n - 1;i++)
+            {
+                mod = i % 4;
+                if (mod == 0)
+                    sum += 14d * f(a + i * h);
+                else if (mod == 1)
+                    sum += 32d * f(a + i * h);
+                else if (mod == 2)
+                    sum += 12d * f(a + i * h);
+                else
+                    sum += 32d * f(a + i * h);
+            }
+            result=2d * h / 45d * sum;
+           */
 
-             }
-             result=2d * h / 45d * sum;
-            */
-            //  result = (b - a) * (7d * f(a) + 32d * f((3d * a + b) / 4d) + 12d * f((a + b) / 2d) + 32d * f((a + 3d * b) / 4d) + 7d * f(b)) / 90d;
             textBox5.Text = Convert.ToString(result);
             return result;
         }
@@ -303,28 +280,26 @@ namespace nummeth
             {
                 return Math.Exp(b)-Math.Exp(a);
             }
-            //textBox2.Text =Convert.ToString(y);
+           
             return y;
         }
      
         void Checkf(Func<double, double> f)
         {
             double e,O,min=999999;
-            O = 1d / 15d;
-            richTextBox1.Clear();
+           richTextBox1.Clear();
           
            double s1 = Convert.ToDouble(textBox3.Text);
             
             double s2 = sins(a, b);
-          //  richTextBox1.Text = "sin-" + Convert.ToString(s2)+'\n';
+     
             e = Math.Abs(s2 - s1);
             min = e;
             textBox2.Text = "метод симпсона - "+Convert.ToString(min);
             
             richTextBox1.Text += "метод симпсона - "+Convert.ToString(e)+'\n';
             double t1 = Convert.ToDouble(textBox4.Text);
-            double t2 = threeeight(f, a, b, 20000);
-            O = 1d / 63d;
+        
              e = Math.Abs(s2 - t1);
            
             if (e < min)
@@ -334,10 +309,9 @@ namespace nummeth
             }
             richTextBox1.Text += "метод симпсона 3/8 - " + Convert.ToString(e) + '\n';
             double f1 = Convert.ToDouble(textBox5.Text);
-            double f2 = fives(f, a, b, 20000);
-            O = 1d / 255d;
+          
             e = Math.Abs(s2 - f1);
-            if (e < min)
+            if (e <= min)
             {
                 min = e;
                 textBox2.Text = "метод пятиточий - " + Convert.ToString(min);
